@@ -304,6 +304,15 @@ describe('renderMarkdown', () => {
     expect(out).toContain('alt=""');
   });
 
+  it('bounds markdown images on both axes so one image cannot take over the chat', () => {
+    // A square SVG icon pasted by the model (e.g. a terminal `>_` mark)
+    // rendered at full chat width with unbounded height. Width already
+    // caps at the container; this pins the height ceiling too.
+    const out = html('![terminal](https://example.com/term.svg)');
+    expect(out).toContain('max-width:100%');
+    expect(out).toContain('max-height:min(48vh, 520px)');
+  });
+
   it('renders https image URLs', () => {
     const out = html('![logo](https://example.com/logo.png)');
     expect(out).toContain('<img');

@@ -1225,6 +1225,13 @@
 .prose-block .md-image {
   margin: 14px 0;
   border-radius: var(--radius-md);
+  /* Same bound as the chat renderer's inline style: width already caps at
+     the container, but height was unbounded — a square pasted icon rendered
+     full-bleed and took over the message list. */
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  max-height: min(48vh, 520px);
 }
 .prose-block .md-code-comment {
   margin: 14px 0;

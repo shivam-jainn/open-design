@@ -642,7 +642,12 @@ function renderInline(text: string, options?: RenderMarkdownOptions): ReactNode 
             alt={alt}
             loading="lazy"
             referrerPolicy="no-referrer"
-            style={{ maxWidth: '100%', height: 'auto', borderRadius: 6 }}
+            // Bound both axes: width already caps at the container, but
+            // height was unbounded — a square SVG icon (e.g. a terminal
+            // `>_` mark pasted by the model) rendered full chat width and
+            // took over the conversation. Same 520px ceiling language as
+            // the `.term` output bound in record.module.css.
+            style={{ maxWidth: '100%', height: 'auto', maxHeight: 'min(48vh, 520px)', width: 'auto', borderRadius: 6 }}
           />,
         );
       } else {
