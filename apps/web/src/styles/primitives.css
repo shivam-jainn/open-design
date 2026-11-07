@@ -46,8 +46,11 @@ button.primary {
   color: var(--bg);
 }
 button.primary:hover:not(:disabled) {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
+  /* Intentional literal: hover must step visibly off the base in BOTH themes
+     (light base #202020, dark base #fafafa) and no single theme token does
+     that — var(--accent-hover) tracks the base and kills the feedback. */
+  background: #353535;
+  border-color: #353535;
 }
 button.primary:active:not(:disabled) {
   background: var(--text);

@@ -66,8 +66,10 @@
 }
 
 .primary:hover:not(:disabled) {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
+  /* Intentional literal, mirrors primitives.css: hover must step visibly off
+     the base in both themes; no single theme token does that. */
+  background: #353535;
+  border-color: #353535;
 }
 
 .primary:active:not(:disabled) {

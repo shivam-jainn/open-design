@@ -17,7 +17,7 @@
   --bg-fill-tertiary: rgba(0, 0, 0, 0.03);
   --bg-fill-secondary: rgba(0, 0, 0, 0.06);
   --bg-fill: rgba(0, 0, 0, 0.12);
-  --bg-elevated: #fff;
+  --bg-elevated: #fafafa;
   /* Liquid Glass — frosted "regular" material for floating functional layers
      (nav rail, toolbars, popovers) per the material spec. Translucent surface
      + backdrop blur; falls back to a solid --bg-panel where unsupported. */
@@ -28,10 +28,10 @@
   /* Entry ground shares the app surface — the nav rail is a solid panel now,
      so the page behind it no longer needs a tinted ground to float on. */
   --entry-ground: var(--bg);
-  --border: #c9c9c9;
+  --border: #dbdbdb;
   --border-strong: #bdbdbd;
-  --border-selected: #8a8a8a;
-  --border-soft: #e2e2e2;
+  --border-selected: #a3a3a3;
+  --border-soft: #ededed;
 
   --text: #494949;
   --text-strong: #202020;

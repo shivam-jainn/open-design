@@ -1,11 +1,9 @@
-/* DEPRECATED copy — canonical source is apps/web/src/styles/primitives.css,
+/* DUPLICATE copy — canonical source is apps/web/src/styles/primitives.css,
  * which owns the app-surface primitives. This file duplicates them for
- * standalone @open-design/components use, and the duplication has already
- * drifted once (od-select-menu glass vs solid, primary hover, focus halo —
- * see primitives.css for the reference treatments). No functional merge:
- * comment only, except .od-select-menu below, which is re-aligned to the
- * primitives glass (var(--glass-regular) + var(--glass-backdrop)). Do not
- * extend this copy; converge new surfaces on primitives.css.
+ * standalone @open-design/components use. Keep the two in sync by hand;
+ * known intentional deltas live inline (primary hover literal, entry halo
+ * rgba — see each rule). Do not extend this copy; converge new surfaces on
+ * primitives.css.
  */
 /* -------- Buttons --------------------------------------------------- */
 button {
@@ -50,8 +48,10 @@ button.primary {
   color: var(--bg);
 }
 button.primary:hover:not(:disabled) {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
+  /* Intentional literal, mirrors primitives.css: hover must step visibly off
+     the base in both themes; no single theme token does that. */
+  background: #353535;
+  border-color: #353535;
 }
 button.primary:active:not(:disabled) {
   background: var(--text);
@@ -157,14 +157,16 @@ input:focus, textarea:focus, select:focus {
   box-shadow: none;
 }
 /* Entry sidebar form fields keep a quieter, neutral focus so the orange
-   "Create" CTA stays the loudest thing in the panel. The halo uses
-   var(--selected-soft) so it tracks the theme instead of a hard-coded
-   light-mode rgba. */
+   "Create" CTA stays the loudest thing in the panel. A low-opacity black
+   halo reads as "focused" without re-introducing the global blue/accent
+   ring. Using rgba directly because the Next CSS pipeline collapses
+   `color-mix(in srgb, var(--text) 8%, transparent)` to a solid var(--text)
+   ring (would render a 3px black band — too loud). */
 .entry-side input:focus,
 .entry-side textarea:focus,
 .entry-side select:focus {
   border-color: var(--text);
-  box-shadow: 0 0 0 3px var(--selected-soft);
+  box-shadow: 0 0 0 3px rgba(28, 27, 26, 0.08);
 }
 /* Native <select> on macOS uses its own intrinsic min-height that ends up
    shorter than <input> at the same `padding: 7px 10px` rule above, so any
@@ -262,9 +264,7 @@ textarea { resize: vertical; font-family: inherit; }
   overflow-x: hidden;
   overscroll-behavior: contain;
   max-width: calc(100vw - 24px);
-  background: var(--glass-regular);
-  -webkit-backdrop-filter: var(--glass-backdrop);
-  backdrop-filter: var(--glass-backdrop);
+  background: var(--bg-panel);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-lg);

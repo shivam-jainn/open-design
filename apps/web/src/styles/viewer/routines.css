@@ -2491,17 +2491,14 @@
 [data-theme="dark"] .app .chat-log,
 [data-theme="dark"] .chat-skin .chat-log,
 [data-theme="dark"] .chat-composer-fixed-layer .composer {
-  /* Veil contract: the pane stays transparent in dark so the shared wash
-     shows through; an opaque panel fill would strand a light card on dark. */
-  background: transparent;
+  background: var(--bg-panel);
 }
 
 @media (prefers-color-scheme: dark) {
   html:not([data-theme]) .app .chat-log,
   html:not([data-theme]) .chat-skin .chat-log,
   html:not([data-theme]) .chat-composer-fixed-layer .composer {
-    /* Veil contract (system dark, no explicit theme): same transparency. */
-    background: transparent;
+    background: var(--bg-panel);
   }
 }
 .chat-composer-fixed-layer .composer-shell > * {
